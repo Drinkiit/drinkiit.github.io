@@ -1,0 +1,671 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Setup Local DatabaseLeetCode does not allow you to run your solutions to the database problems unless you submit them. So you had better to create your own leetcode-structured database on your local c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode-Database-Solutions">
+<meta property="og:url" content="http://yoursite.com/2017/02/12/LeetCode-Database-Solutions/index.html">
+<meta property="og:site_name" content="Yida's Blog">
+<meta property="og:description" content="Setup Local DatabaseLeetCode does not allow you to run your solutions to the database problems unless you submit them. So you had better to create your own leetcode-structured database on your local c">
+<meta property="og:updated_time" content="2017-02-12T19:45:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode-Database-Solutions">
+<meta name="twitter:description" content="Setup Local DatabaseLeetCode does not allow you to run your solutions to the database problems unless you submit them. So you had better to create your own leetcode-structured database on your local c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/12/LeetCode-Database-Solutions/"/>
+
+
+
+
+
+  <title> LeetCode-Database-Solutions | Yida's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Yida's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/12/LeetCode-Database-Solutions/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yida Yin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/smiling_man.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Yida's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Yida's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LeetCode-Database-Solutions
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-12T09:22:17-06:00">
+                2017-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Setup-Local-Database"><a href="#Setup-Local-Database" class="headerlink" title="Setup Local Database"></a>Setup Local Database</h2><p>LeetCode does not allow you to run your solutions to the database problems unless you submit them. So you had better to create your own leetcode-structured database on your local computer and play with the it. You can download <a href="/hodgepodge/leetcode_database.sql">my script</a> to setup the environment.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p &lt; leetcode_database.sql</div></pre></td></tr></table></figure>
+<p>This will create a database called <code>leetcode</code> and put 11 tables in it for further use.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">+--------------------+</div><div class="line">| Tables_in_leetcode |</div><div class="line">+--------------------+</div><div class="line">| Address            |</div><div class="line">| Customers          |</div><div class="line">| Department         |</div><div class="line">| Employee           |</div><div class="line">| Logs               |</div><div class="line">| Orders             |</div><div class="line">| Person             |</div><div class="line">| Scores             |</div><div class="line">| Trips              |</div><div class="line">| Users              |</div><div class="line">| Weather            |</div><div class="line">+--------------------+</div><div class="line">11 rows in set</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="175-Combine-Two-Tables"><a href="#175-Combine-Two-Tables" class="headerlink" title="175. Combine Two Tables"></a>175. Combine Two Tables</h2><p>Table: <code>Person</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+-------------+---------+</div><div class="line">| Column Name | Type    |</div><div class="line">+-------------+---------+</div><div class="line">| PersonId    | int     |</div><div class="line">| FirstName   | varchar |</div><div class="line">| LastName    | varchar |</div><div class="line">+-------------+---------+</div><div class="line">PersonId is the primary key column for this table.</div></pre></td></tr></table></figure></p>
+<p>Table: <code>Address</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">+-------------+---------+</div><div class="line">| Column Name | Type    |</div><div class="line">+-------------+---------+</div><div class="line">| AddressId   | int     |</div><div class="line">| PersonId    | int     |</div><div class="line">| City        | varchar |</div><div class="line">| State       | varchar |</div><div class="line">+-------------+---------+</div><div class="line">AddressId is the primary key column for this table.</div></pre></td></tr></table></figure></p>
+<p>Write a SQL query for a report that provides the following information for each person in the Person table, regardless if there is an address for each of those people:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">FirstName, LastName, City, State</div></pre></td></tr></table></figure></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> Person.FirstName, Person.LastName, Address.City, Address.State</div><div class="line"><span class="keyword">from</span> Person</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> Address</div><div class="line">	<span class="keyword">on</span> Person.PersonId = Address.PersonId;</div></pre></td></tr></table></figure>
+<h3 id="Wrong-Solution"><a href="#Wrong-Solution" class="headerlink" title="Wrong Solution:"></a>Wrong Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> Person.FirstName, Person.LastName, Address.City, Address.State</div><div class="line"><span class="keyword">from</span> Person, Address</div><div class="line"><span class="keyword">where</span> Person.PersonId = Address.PersonId;</div></pre></td></tr></table></figure>
+<p>This will not return those people who do not have an address.  </p>
+<h2 id="176-Second-Highest-Salary"><a href="#176-Second-Highest-Salary" class="headerlink" title="176. Second Highest Salary"></a>176. Second Highest Salary</h2><p>Write a SQL query to get the second highest salary from the <code>Employee</code> table.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+----+--------+</div><div class="line">| Id | Salary |</div><div class="line">+----+--------+</div><div class="line">| 1  | 100    |</div><div class="line">| 2  | 200    |</div><div class="line">| 3  | 300    |</div><div class="line">+----+--------+</div></pre></td></tr></table></figure></p>
+<p>For example, given the above Employee table, the second highest salary is 200. If there is no second highest salary, then the query should return null.  </p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">max</span>(Employee.Salary)</div><div class="line"><span class="keyword">from</span> Employee</div><div class="line"><span class="keyword">where</span> Employee.Salary &lt; (<span class="keyword">select</span> <span class="keyword">max</span>(Salary) <span class="keyword">from</span> Employee);</div></pre></td></tr></table></figure>
+<p>Or,<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> Salary </div><div class="line"><span class="keyword">from</span> Employee </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> Salary </div><div class="line"><span class="keyword">Desc</span> <span class="keyword">limit</span> <span class="number">1</span> <span class="keyword">offset</span> <span class="number">1</span>;</div></pre></td></tr></table></figure></p>
+<h2 id="177-Nth-Highest-Salary"><a href="#177-Nth-Highest-Salary" class="headerlink" title="177. Nth Highest Salary"></a>177. Nth Highest Salary</h2><p>Write a SQL query to get the n-th highest salary from the <code>Employee</code> table.</p>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> getNthHighestSalary(N <span class="built_in">INT</span>) <span class="keyword">RETURNS</span> <span class="built_in">INT</span></div><div class="line"><span class="keyword">BEGIN</span></div><div class="line">    <span class="keyword">set</span> N = N - <span class="number">1</span>;</div><div class="line">  RETURN (</div><div class="line">      <span class="keyword">select</span> <span class="keyword">distinct</span> Salary <span class="keyword">from</span> Employee <span class="keyword">order</span> <span class="keyword">by</span> Salary <span class="keyword">Desc</span> <span class="keyword">limit</span> <span class="number">1</span> <span class="keyword">offset</span> N</div><div class="line">  );</div><div class="line"><span class="keyword">END</span></div></pre></td></tr></table></figure>
+<p>Note: <code>LIMIT offset, row_count</code>  is equivalent to <code>LIMIT row_count OFFSET offset</code></p>
+<h2 id="178-Rank-Scores"><a href="#178-Rank-Scores" class="headerlink" title="178. Rank Scores"></a>178. Rank Scores</h2><p>Write a SQL query to rank scores. If there is a tie between two scores, both should have the same ranking. Note that after a tie, the next ranking number should be the next consecutive integer value. In other words, there should be no “holes” between ranks.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">+----+-------+</div><div class="line">| Id | Score |</div><div class="line">+----+-------+</div><div class="line">| 1  | 3.50  |</div><div class="line">| 2  | 3.65  |</div><div class="line">| 3  | 4.00  |</div><div class="line">| 4  | 3.85  |</div><div class="line">| 5  | 4.00  |</div><div class="line">| 6  | 3.65  |</div><div class="line">+----+-------+</div></pre></td></tr></table></figure></p>
+<p>For example, given the above <code>Scores</code> table, your query should generate the following report (order by highest score):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">+-------+------+</div><div class="line">| Score | Rank |</div><div class="line">+-------+------+</div><div class="line">| 4.00  | 1    |</div><div class="line">| 4.00  | 1    |</div><div class="line">| 3.85  | 2    |</div><div class="line">| 3.65  | 3    |</div><div class="line">| 3.65  | 3    |</div><div class="line">| 3.50  | 4    |</div><div class="line">+-------+------+</div></pre></td></tr></table></figure></p>
+<h3 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">	s.Score, </div><div class="line">	(<span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> Score) <span class="keyword">from</span> Scores <span class="keyword">where</span> Score &gt;= s.Score) <span class="keyword">Rank</span></div><div class="line"><span class="keyword">from</span> Scores s</div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> s.Score <span class="keyword">Desc</span>;</div></pre></td></tr></table></figure>
+<h2 id="180-Consecutive-Numbers"><a href="#180-Consecutive-Numbers" class="headerlink" title="180. Consecutive Numbers"></a>180. Consecutive Numbers</h2><p>Write a SQL query to find all numbers that appear at least three times consecutively.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">+----+-----+</div><div class="line">| Id | Num |</div><div class="line">+----+-----+</div><div class="line">| 1  |  1  |</div><div class="line">| 2  |  1  |</div><div class="line">| 3  |  1  |</div><div class="line">| 4  |  2  |</div><div class="line">| 5  |  1  |</div><div class="line">| 6  |  2  |</div><div class="line">| 7  |  2  |</div><div class="line">+----+-----+</div></pre></td></tr></table></figure></p>
+<p>For example, given the above <code>Logs</code> table, 1 is the only number that appears consecutively for at least three times.</p>
+<h3 id="Solution-4"><a href="#Solution-4" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">## Write your MySQL query statement below</div><div class="line">select distinct l1.Num</div><div class="line">from Logs l1, Logs l2, Logs l3</div><div class="line">where l1.Id=l2.Id-1 and l2.Id=l3.Id-1</div><div class="line">	and l1.Num = l2.Num and l2.Num = l3.Num;</div></pre></td></tr></table></figure>
+<h2 id="181-Employees-Earning-More-Than-Their-Managers"><a href="#181-Employees-Earning-More-Than-Their-Managers" class="headerlink" title="181. Employees Earning More Than Their Managers"></a>181. Employees Earning More Than Their Managers</h2><p>The <code>Employee</code> table holds all employees including their managers. Every employee has an Id, and there is also a column for the manager Id.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+----+-------+--------+-----------+</div><div class="line">| Id | Name  | Salary | ManagerId |</div><div class="line">+----+-------+--------+-----------+</div><div class="line">| 1  | Joe   | 70000  | 3         |</div><div class="line">| 2  | Henry | 80000  | 4         |</div><div class="line">| 3  | Sam   | 60000  | NULL      |</div><div class="line">| 4  | Max   | 90000  | NULL      |</div><div class="line">+----+-------+--------+-----------+</div></pre></td></tr></table></figure></p>
+<p>Given the <code>Employee</code> table, write a SQL query that finds out employees who earn more than their managers. For the above table, Joe is the only employee who earns more than his manager.</p>
+<h3 id="Solution-5"><a href="#Solution-5" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> e1.Name Employee </div><div class="line"><span class="keyword">from</span> Employee e1, Employee e2</div><div class="line"><span class="keyword">where</span> e1.ManagerId = e2.Id <span class="keyword">and</span> e1.Salary &gt; e2.Salary;</div></pre></td></tr></table></figure>
+<h2 id="182-Duplicate-Emails"><a href="#182-Duplicate-Emails" class="headerlink" title="182. Duplicate Emails"></a>182. Duplicate Emails</h2><p>Write a SQL query to find all duplicate emails in a table named <code>Person</code>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+----+---------+</div><div class="line">| Id | Email   |</div><div class="line">+----+---------+</div><div class="line">| 1  | a@b.com |</div><div class="line">| 2  | c@d.com |</div><div class="line">| 3  | a@b.com |</div><div class="line">+----+---------+</div></pre></td></tr></table></figure></p>
+<h3 id="Solution-6"><a href="#Solution-6" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> Email <span class="keyword">FROM</span> Person <span class="keyword">GROUP</span> <span class="keyword">BY</span> Email <span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(Email) &gt; <span class="number">1</span>;</div></pre></td></tr></table></figure>
+<h2 id="183-Customers-Who-Never-Order"><a href="#183-Customers-Who-Never-Order" class="headerlink" title="183. Customers Who Never Order"></a>183. Customers Who Never Order</h2><p>Suppose that a website contains two tables, the Customers table and the Orders table. Write a SQL query to find all customers who never order anything.<br>Table: <code>Customers</code>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+----+-------+</div><div class="line">| Id | Name  |</div><div class="line">+----+-------+</div><div class="line">| 1  | Joe   |</div><div class="line">| 2  | Henry |</div><div class="line">| 3  | Sam   |</div><div class="line">| 4  | Max   |</div><div class="line">+----+-------+</div></pre></td></tr></table></figure></p>
+<p>Table: <code>Orders</code>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+----+------------+</div><div class="line">| Id | CustomerId |</div><div class="line">+----+------------+</div><div class="line">| 1  | 3          |</div><div class="line">| 2  | 1          |</div><div class="line">+----+------------+</div></pre></td></tr></table></figure></p>
+<p>Using the above tables as example, return the following:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+-----------+</div><div class="line">| Customers |</div><div class="line">+-----------+</div><div class="line">| Henry     |</div><div class="line">| Max       |</div><div class="line">+-----------+</div></pre></td></tr></table></figure></p>
+<h3 id="Solution-7"><a href="#Solution-7" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> Customers.Name Customers</div><div class="line"><span class="keyword">from</span> Customers</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> Orders</div><div class="line">	<span class="keyword">on</span> Customers.Id = Orders.CustomerId</div><div class="line"><span class="keyword">where</span> Orders.Id <span class="keyword">is</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure>
+<h2 id="184-Department-Highest-Salary"><a href="#184-Department-Highest-Salary" class="headerlink" title="184. Department Highest Salary"></a>184. Department Highest Salary</h2><p>The <code>Employee</code> table holds all employees. Every employee has an Id, a salary, and there is also a column for the department Id.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+----+-------+--------+--------------+</div><div class="line">| Id | Name  | Salary | DepartmentId |</div><div class="line">+----+-------+--------+--------------+</div><div class="line">| 1  | Joe   | 70000  | 1            |</div><div class="line">| 2  | Henry | 80000  | 2            |</div><div class="line">| 3  | Sam   | 60000  | 2            |</div><div class="line">| 4  | Max   | 90000  | 1            |</div><div class="line">+----+-------+--------+--------------+</div></pre></td></tr></table></figure></p>
+<p>The <code>Department</code> table holds all departments of the company.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+----+----------+</div><div class="line">| Id | Name     |</div><div class="line">+----+----------+</div><div class="line">| 1  | IT       |</div><div class="line">| 2  | Sales    |</div><div class="line">+----+----------+</div></pre></td></tr></table></figure></p>
+<p>Write a SQL query to find employees who have the highest salary in each of the departments. For the above tables, Max has the highest salary in the IT department and Henry has the highest salary in the Sales department.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+------------+----------+--------+</div><div class="line">| Department | Employee | Salary |</div><div class="line">+------------+----------+--------+</div><div class="line">| IT         | Max      | 90000  |</div><div class="line">| Sales      | Henry    | 80000  |</div><div class="line">+------------+----------+--------+</div></pre></td></tr></table></figure></p>
+<h3 id="Solution-8"><a href="#Solution-8" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h2 id="185-Department-Top-Three-Salaries"><a href="#185-Department-Top-Three-Salaries" class="headerlink" title="185. Department Top Three Salaries"></a>185. Department Top Three Salaries</h2><p>Write a SQL query to find employees who earn the top three salaries in each of the department. For the above tables, your SQL query should return the following rows.</p>
+<h2 id="196-Delete-Duplicate-Emails"><a href="#196-Delete-Duplicate-Emails" class="headerlink" title="196. Delete Duplicate Emails"></a>196. Delete Duplicate Emails</h2><p>Write a SQL query to delete all duplicate email entries in a table named <code>Person</code>, keeping only unique emails based on its smallest Id.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+----+------------------+</div><div class="line">| Id | Email            |</div><div class="line">+----+------------------+</div><div class="line">| 1  | john@example.com |</div><div class="line">| 2  | bob@example.com  |</div><div class="line">| 3  | john@example.com |</div><div class="line">+----+------------------+</div><div class="line">Id is the primary key column for this table.</div></pre></td></tr></table></figure></p>
+<p>For example, after running your query, the above <code>Person</code> table should have the following rows:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">+----+------------------+</div><div class="line">| Id | Email            |</div><div class="line">+----+------------------+</div><div class="line">| 1  | john@example.com |</div><div class="line">| 2  | bob@example.com  |</div><div class="line">+----+------------------+</div></pre></td></tr></table></figure></p>
+<h3 id="Solution-9"><a href="#Solution-9" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> p1</div><div class="line"><span class="keyword">from</span> Person p1, Person p2</div><div class="line"><span class="keyword">where</span> p1.Email = p2.Email <span class="keyword">and</span> p1.Id &gt; p2.Id;</div></pre></td></tr></table></figure>
+<h2 id="197-Rising-Temperature"><a href="#197-Rising-Temperature" class="headerlink" title="197. Rising Temperature"></a>197. Rising Temperature</h2><p>Given a <code>Weather</code> table, write a SQL query to find all dates’ Ids with higher temperature compared to its previous (yesterday’s) dates.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+---------+------------+------------------+</div><div class="line">| Id(INT) | Date(DATE) | Temperature(INT) |</div><div class="line">+---------+------------+------------------+</div><div class="line">|       1 | 2015-01-01 |               10 |</div><div class="line">|       2 | 2015-01-02 |               25 |</div><div class="line">|       3 | 2015-01-03 |               20 |</div><div class="line">|       4 | 2015-01-04 |               30 |</div><div class="line">+---------+------------+------------------+</div></pre></td></tr></table></figure></p>
+<h3 id="Solution-10"><a href="#Solution-10" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> w2.Id</div><div class="line"><span class="keyword">from</span> Weather w1, Weather w2</div><div class="line"><span class="keyword">where</span> <span class="keyword">TO_DAYS</span>(w1.Date) = <span class="keyword">TO_DAYS</span>(w2.Date)<span class="number">-1</span> <span class="keyword">and</span> w1.Temperature &lt; w2.Temperature;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/11/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/smiling_man.jpg"
+               alt="Yida Yin" />
+          <p class="site-author-name" itemprop="name">Yida Yin</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup-Local-Database"><span class="nav-number">1.</span> <span class="nav-text">Setup Local Database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#175-Combine-Two-Tables"><span class="nav-number">2.</span> <span class="nav-text">175. Combine Two Tables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.1.</span> <span class="nav-text">Solution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wrong-Solution"><span class="nav-number">2.2.</span> <span class="nav-text">Wrong Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#176-Second-Highest-Salary"><span class="nav-number">3.</span> <span class="nav-text">176. Second Highest Salary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-1"><span class="nav-number">3.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#177-Nth-Highest-Salary"><span class="nav-number">4.</span> <span class="nav-text">177. Nth Highest Salary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-2"><span class="nav-number">4.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#178-Rank-Scores"><span class="nav-number">5.</span> <span class="nav-text">178. Rank Scores</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-3"><span class="nav-number">5.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#180-Consecutive-Numbers"><span class="nav-number">6.</span> <span class="nav-text">180. Consecutive Numbers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-4"><span class="nav-number">6.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#181-Employees-Earning-More-Than-Their-Managers"><span class="nav-number">7.</span> <span class="nav-text">181. Employees Earning More Than Their Managers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-5"><span class="nav-number">7.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#182-Duplicate-Emails"><span class="nav-number">8.</span> <span class="nav-text">182. Duplicate Emails</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-6"><span class="nav-number">8.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#183-Customers-Who-Never-Order"><span class="nav-number">9.</span> <span class="nav-text">183. Customers Who Never Order</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-7"><span class="nav-number">9.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#184-Department-Highest-Salary"><span class="nav-number">10.</span> <span class="nav-text">184. Department Highest Salary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-8"><span class="nav-number">10.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#185-Department-Top-Three-Salaries"><span class="nav-number">11.</span> <span class="nav-text">185. Department Top Three Salaries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#196-Delete-Duplicate-Emails"><span class="nav-number">12.</span> <span class="nav-text">196. Delete Duplicate Emails</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-9"><span class="nav-number">12.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#197-Rising-Temperature"><span class="nav-number">13.</span> <span class="nav-text">197. Rising Temperature</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-10"><span class="nav-number">13.1.</span> <span class="nav-text">Solution:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yida Yin</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
