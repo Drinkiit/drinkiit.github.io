@@ -156,7 +156,7 @@ VALUES
 ###############################################
 CREATE TABLE Users(
     Users_Id int NOT NULL,
-    Banned boolean,
+    Banned ENUM('Yes', 'No'),
     Role ENUM('client', 'driver', 'partner'),
     PRIMARY KEY (Users_Id)
 );
@@ -164,14 +164,14 @@ CREATE TABLE Users(
 INSERT INTO Users
     (Users_Id, Banned, Role)
 VALUES
-    (1, FALSE, "client"),
-    (2, TRUE, "client"),
-    (3, FALSE, "client"),
-    (4, FALSE, "client"),
-    (10, FALSE, "driver"),
-    (11, FALSE, "driver"),
-    (12, FALSE, "driver"),
-    (13, FALSE, "driver");
+    (1, "No", "client"),
+    (2, "Yes", "client"),
+    (3, "No", "client"),
+    (4, "No", "client"),
+    (10, "No", "driver"),
+    (11, "No", "driver"),
+    (12, "No", "driver"),
+    (13, "No", "driver");
 
 CREATE TABLE Trips(
 	Id int NOT NULL,
