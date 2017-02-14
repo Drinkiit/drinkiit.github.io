@@ -87,16 +87,19 @@
 
 
 
-<meta name="description" content="Welcome to my blog!">
+<meta name="description" content="This example comes from ‘Data analysis: a Bayesian tutorial’[1 P29]. It was originally studied by Gull (1988) who found this problem on a problems sheet for first-year undergraduates at Cambridge: ‘A">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/02/11/hello-world/index.html">
+<meta property="og:title" content="The Lighthouse Problem">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/The-Lighthouse-Problem/index.html">
 <meta property="og:site_name" content="Yida's Blog">
-<meta property="og:description" content="Welcome to my blog!">
-<meta property="og:updated_time" content="2017-02-12T19:36:19.000Z">
+<meta property="og:description" content="This example comes from ‘Data analysis: a Bayesian tutorial’[1 P29]. It was originally studied by Gull (1988) who found this problem on a problems sheet for first-year undergraduates at Cambridge: ‘A">
+<meta property="og:image" content="http://yoursite.com/illustration_lighthouse.png">
+<meta property="og:image" content="http://yoursite.com/cauchy_distribution.png">
+<meta property="og:updated_time" content="2017-02-14T00:12:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to my blog!">
+<meta name="twitter:title" content="The Lighthouse Problem">
+<meta name="twitter:description" content="This example comes from ‘Data analysis: a Bayesian tutorial’[1 P29]. It was originally studied by Gull (1988) who found this problem on a problems sheet for first-year undergraduates at Cambridge: ‘A">
+<meta name="twitter:image" content="http://yoursite.com/illustration_lighthouse.png">
 
 
 
@@ -124,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/11/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/13/The-Lighthouse-Problem/"/>
 
 
 
 
 
-  <title> Hello World | Yida's Blog </title>
+  <title> The Lighthouse Problem | Yida's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -266,7 +269,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/11/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/13/The-Lighthouse-Problem/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yida Yin">
@@ -290,7 +293,7 @@
             
             
               
-                Hello World
+                The Lighthouse Problem
               
             
           </h1>
@@ -305,8 +308,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-11T19:25:39-06:00">
-                2017-02-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-13T11:22:45-06:00">
+                2017-02-13
               </time>
             
 
@@ -324,8 +327,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/11/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/11/hello-world/" itemprop="commentCount"></span>
+                <a href="/2017/02/13/The-Lighthouse-Problem/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/13/The-Lighthouse-Problem/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +354,20 @@
       
 
       
-        <p>Welcome to my blog!</p>
+        <p>This example comes from ‘Data analysis: a Bayesian tutorial’[1 P29]. It was originally studied by Gull (1988) who found this problem on a problems sheet for first-year undergraduates at Cambridge: ‘A lighthouse is somewhere off a piece of straight coastline at a position $\alpha$ along the shore and a distance $\beta$ out at sea. It emits a series of short highly collimated flashes at random intervals and hence at random azimuths. These pulses are intercepted on the coast by photo-detectors that record only the fact that a flash has occurred, but not the angle from which it came. $N$ flashes have so far been recorded at positions $x_k$. Where is the lighthouse?’</p>
+<div class="centered" style="width:600px; height=400px"><br><img src="illustration_lighthouse.png" alt="lighthouse illustration"><br></div>
+
+<p>The geometry of this problem is illustrated above. Give the nature of the lighthouse emissions, it’s reasonable to assign a uniform pdf for the azimuth of the $k$th datum $\theta_k$:</p>
+<p>$$<br>p(\theta_k | \alpha, \beta) = \frac{1}{\pi}<br>$$<br>Then we can connect the azimuth to the position along the coast $x$ as follow:</p>
+<p>$$<br>\beta \tan\theta = x-\alpha<br>$$<br>Note that this is also true for $(x_k, \theta_k)$. Differentiating both side with respect to $x$, we have: </p>
+<p>$$<br>\beta \sec^2\theta \times\frac{d\theta}{d x} = 1<br>$$<br>Using the fact that $\tan^2\theta+1 \equiv \sec^2\theta$, the above equation can be written as: </p>
+<p>$$<br>\frac{d\theta}{dx} = \bigg(\beta[1+\sec^2\theta]\bigg)^{-1} = \bigg(\beta \big[1+\big(\frac{x-\alpha}{\beta}\big)^2 \big]\bigg)^{-1} = \frac{\beta}{\beta^2+(x-\alpha)^2}<br>$$<br>With the subject of changing variables $p(X)=p(Y) \times \bigg|\frac{dY}{dX} \bigg|$[2], we can transform the pdf for $ \theta $ to its equivalent form in terms of $x$. And finally we obtain the Cauchy distribution:<br>$$<br>p(x|\alpha, \beta) = p(\theta| \alpha, \beta) \times \bigg|\frac{d \theta}{dx} \bigg| = \frac{\beta}{\pi \big[\beta^2+(x-\alpha)^2 \big]}<br>$$</p>
+<div class="centered" style="width:600px; height=400px"><br><img src="cauchy_distribution.png" alt="Cauchy DIstribution"><br></div>
+
+<p>This tells us that the $k$th flash will be recorded at position $x_k$ knowing the location of the lighthouse $(\alpha, \beta)$, is given by a Cauchy distribution. Inferring the position of the lighthouse from the data involves the estimation of both $\alpha$ and $\beta$. For convenience, we just assume that the distance out to sea $\beta$ is known and reduce it to a single parameter example. Our inference about the position of the lighthouse is then expressed by the posterior pdf:<br>$$p\big(\alpha | {x_k}, \beta \big) \propto p\big( {x_k} | \alpha, \beta \big) \times p\big( \alpha | \beta \big)$$</p>
+<p>Next let us assign a simple uniform pdf for the prior of $\alpha$:<br>$$<br>p\big( \alpha| \beta \big) = p\big( \alpha \big) = A*I[\alpha<em>{min} \le \alpha \le \alpha</em>{max}]<br>$$<br>,where $I$ is the indicator function abd $\alpha<em>{min}$ and $\alpha</em>{max}$ could represent the limits of the coastline, if these were known, or be made arbitrarily large. Since the recording of a signal at one photo-detector does not influence what we can infer about the position of another measurement (when given the location of the lighthouse), the likelihood function for these independent data is just the product of the probabilities for obtaining the N individual detections:<br>$$<br>p\big({x<em>k} | \alpha, \beta \big) = \prod^N</em>{k=1} p\big(x_k | \alpha, \beta \big)<br>$$<br>Substituting the prior of $\alpha$ and this likelihood function, we can get the logarithm of the posterior distribution:<br>$$<br>L = Log_e \big[ p\big(\alpha \big| {x<em>k}, \beta \big) \big] = constant - \sum^N</em>{k=1}log_e\big[ \beta^2+(x_k-\alpha)^2 \big]<br>$$<br>where the constant includes all terms not involving $alpha$. Sometimes you need to be careful about the $\alpha$ inside the indicator function. In this case, let’s just assume that the prior range is so large that we need not worry about any cut-offs imposed on the posterior.</p>
+<p>The best estimate of the position $\alpha<em>0$ is given by the maximum of the posterior pdf. Differentiating this log-posterior pdf once, with respect to $\alpha$, we obtain the condition:<br>$$<br>\frac{dL}{d\alpha} \bigg|</em>{\alpha<em>0} = 2\sum</em>{k=1}^N \frac{x_k-\alpha_0}{\beta^2+(x_k-\alpha)^2} = 0<br>$$<br>Unfortunately, it is difficult to rearrange this equation so that αo is expressed in terms of ${ x_k }$ and $\beta$. Although an analytical solution may confound us, there is nothing to stop us tackling the problem numerically. The most straightforward method is to use brute force and ignorance: simply evaluate $L$, the log posterior pdf, for a whole series of different possible values of $\alpha$ the number giving rise to the largest $L$ will be the best estimate. If we plot the exponential of $L$, $exp(L)$, on the vertical axis, as a function of $\alpha$, on the horizontal axis, then we obtain the posterior pdf for the position of the lighthouse. Not only does this give us a complete visual representation of our inference, it has the advantage that we don’t need to worry whether the posterior pdf is asymmetric or multimodal.</p>
+<p>[1]: Sivia, Devinderjit, and John Skilling. Data analysis: a Bayesian tutorial. OUP Oxford, 2006.<br>[2]: “<a href="https://en.wikipedia.org/wiki/Probability_density_function" target="_blank" rel="external">https://en.wikipedia.org/wiki/Probability_density_function</a>“ – Dependent variables and change of variables</p>
 
       
     </div>
@@ -382,14 +398,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/02/12/LeetCode-Database-Solutions/" rel="next" title="LeetCode Database Solutions">
+                <i class="fa fa-chevron-left"></i> LeetCode Database Solutions
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/12/LeetCode-Database-Solutions/" rel="prev" title="LeetCode Database Solutions">
-                LeetCode Database Solutions <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/13/The-Lighthouse-Problem/lighthouse-problem/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -616,9 +636,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'drinkiit';
-      var disqus_identifier = '2017/02/11/hello-world/';
+      var disqus_identifier = '2017/02/13/The-Lighthouse-Problem/';
 
-      var disqus_title = "Hello World";
+      var disqus_title = "The Lighthouse Problem";
 
 
       function run_disqus_script(disqus_script) {
