@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Series Estimator,Nonparametric Statistics," />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="Welcome to my blog!">
+<meta name="description" content="1. Semi-Supervised Learning (SSL)Semi-supervised learning uses both labeled and unlabeled data.[4] That is the learner has both labeled training data ${(\textbf{x}_i,z_i) : i=1,2,\dots,n }$ and unlabe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/02/11/hello-world/index.html">
+<meta property="og:title" content="Nonparametric Series Estimator as An Example of Semi-Supervised Learning">
+<meta property="og:url" content="http://yoursite.com/2017/02/15/an-example-of-semi-supervised-learning/index.html">
 <meta property="og:site_name" content="Yida's Blog">
-<meta property="og:description" content="Welcome to my blog!">
-<meta property="og:updated_time" content="2017-02-12T19:36:19.000Z">
+<meta property="og:description" content="1. Semi-Supervised Learning (SSL)Semi-supervised learning uses both labeled and unlabeled data.[4] That is the learner has both labeled training data ${(\textbf{x}_i,z_i) : i=1,2,\dots,n }$ and unlabe">
+<meta property="og:updated_time" content="2017-02-16T05:13:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to my blog!">
+<meta name="twitter:title" content="Nonparametric Series Estimator as An Example of Semi-Supervised Learning">
+<meta name="twitter:description" content="1. Semi-Supervised Learning (SSL)Semi-supervised learning uses both labeled and unlabeled data.[4] That is the learner has both labeled training data ${(\textbf{x}_i,z_i) : i=1,2,\dots,n }$ and unlabe">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/11/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/15/an-example-of-semi-supervised-learning/"/>
 
 
 
 
 
-  <title> Hello World | Yida's Blog </title>
+  <title> Nonparametric Series Estimator as An Example of Semi-Supervised Learning | Yida's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -266,7 +266,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/11/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/15/an-example-of-semi-supervised-learning/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Yida Yin">
@@ -290,7 +290,7 @@
             
             
               
-                Hello World
+                Nonparametric Series Estimator as An Example of Semi-Supervised Learning
               
             
           </h1>
@@ -305,8 +305,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-11T19:25:39-06:00">
-                2017-02-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T13:15:51-06:00">
+                2017-02-15
               </time>
             
 
@@ -316,6 +316,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -324,8 +346,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/11/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/11/hello-world/" itemprop="commentCount"></span>
+                <a href="/2017/02/15/an-example-of-semi-supervised-learning/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/15/an-example-of-semi-supervised-learning/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,7 +373,17 @@
       
 
       
-        <p>Welcome to my blog!</p>
+        <h1 id="1-Semi-Supervised-Learning-SSL"><a href="#1-Semi-Supervised-Learning-SSL" class="headerlink" title="1. Semi-Supervised Learning (SSL)"></a>1. Semi-Supervised Learning (SSL)</h1><p>Semi-supervised learning uses both labeled and unlabeled data.[4] That is the learner has both labeled training data ${(\textbf{x}_i,z_i) : i=1,2,\dots,n }$ and unlabeled training data ${\textbf{x}_i : i=n+1,\dots,n+p }$, where $\textbf{x}_i$ is a multidimensional vector and $z_i$ is a scalar.  The goal is to learn a predictor that predicts $z$ given the new test data $\textbf{x}$. Or in other words, we want to find a mapping $\varphi: \textbf{X} \rightarrow \textbf{z}$ that maps the input space $\textbf{X}$ to the value space $\textbf{z}$. The problem is unlabeled data ${\textbf{x}_i : i=n+1,\dots,n+p }$ by itself does not carry any information on the mapping $\varphi: \textbf{X} \rightarrow \textbf{z}$, so how can it help us learn a better predictor? </p>
+<a id="more"></a>
+<p>Self-training, starting in the 1960s, might be the oldest approach to semi-supervised learning. Generative models introduced by Vladimir Vapnik in the 1970s are also very popular approach to semi-supervised learning. But these methods cannot give a very detailed answer to the question above. Here I would like to introduce an example of the semi-supervised learning method, which is a nonparametric series approach proposed by Izbicki and Lee. This series framework can be naturally extended to semi-supervised learning (Zhu and Goldberg 2009). And they also provided the converge rate with and without the unlabeled data.</p>
+<h1 id="2-Nonparametric-Spectral-Series-Estimator-for-Conditional-Density"><a href="#2-Nonparametric-Spectral-Series-Estimator-for-Conditional-Density" class="headerlink" title="2. Nonparametric Spectral Series Estimator for Conditional Density"></a>2. Nonparametric Spectral Series Estimator for Conditional Density</h1><p>Rafael IZBICKI and Ann B. LEE[2] propose a new nonparametric series estimator to estimate the condition density of $z$ given $\textbf{x}$. Their method follows the following steps: first use the eigenfunctions of an special defined integral operator as the basis of $\textbf{x}$. We can see that these eigenfunctions are orthonormal with respect to the data distribution $P(\textbf{x})$. Then choose a suitable orthonormal basis on the domain of $z$. After that they define a specral series to be the estimate of the conditional density $f(z|\textbf{x})$.</p>
+<p>In the first step, the estimator of the spectral basis on the domain of $\textbf{x}$ depends only on $\textbf{x}$ and has nothing to do with $z$. So in this case, <strong><em>By including the unlabeled data in the first step, we can better estimate the eigenfunctions which form the basis on the domain of $\textbf{x}$, and hence the conditional density.</em></strong></p>
+<p>Section 3 describes the triditional series estimators in both univariate and multivariate case. In section 4, we talk about this spectral series method. </p>
+<p>(TODO)</p>
+<h1 id="3-Introduction-to-Series-Estimator"><a href="#3-Introduction-to-Series-Estimator" class="headerlink" title="3. Introduction to Series Estimator"></a>3. Introduction to Series Estimator</h1><h2 id="3-1-Orthonormal-Basis-Univariate-Case"><a href="#3-1-Orthonormal-Basis-Univariate-Case" class="headerlink" title="3.1 Orthonormal Basis (Univariate Case)"></a>3.1 Orthonormal Basis (Univariate Case)</h2><h2 id="3-2-Tensor-Product-Multivariate-Case"><a href="#3-2-Tensor-Product-Multivariate-Case" class="headerlink" title="3.2 Tensor Product (Multivariate Case)"></a>3.2 Tensor Product (Multivariate Case)</h2><h1 id="4-Spectral-Series-Estimator"><a href="#4-Spectral-Series-Estimator" class="headerlink" title="4. Spectral Series Estimator"></a>4. Spectral Series Estimator</h1><h2 id="4-1-Introduction"><a href="#4-1-Introduction" class="headerlink" title="4.1 Introduction"></a>4.1 Introduction</h2><h2 id="4-2-Algorithm"><a href="#4-2-Algorithm" class="headerlink" title="4.2 Algorithm"></a>4.2 Algorithm</h2><h2 id="4-3-Discuss"><a href="#4-3-Discuss" class="headerlink" title="4.3 Discuss"></a>4.3 Discuss</h2><p>[1] <a href="https://en.wikipedia.org/wiki/Semi-supervised_learning" target="_blank" rel="external">https://en.wikipedia.org/wiki/Semi-supervised_learning</a></p>
+<p>[2] Izbicki, Rafael, and Ann B. Lee. “Nonparametric Conditional Density Estimation in a High-Dimensional Regression Setting.” Journal of Computational and Graphical Statistics,(just accepted) (2015).</p>
+<p>[3] Efromovich S. Nonparametric curve estimation: methods, theory, and applications[M]. Springer Science &amp; Business Media, 2008.</p>
+<p>[4] Zhu, Xiaojin. “Semi-supervised learning.” Encyclopedia of Machine Learning. Springer US, 2011. 892-897.</p>
 
       
     </div>
@@ -373,6 +405,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Series-Estimator/" rel="tag"># Series Estimator</a>
+          
+            <a href="/tags/Nonparametric-Statistics/" rel="tag"># Nonparametric Statistics</a>
+          
+        </div>
+      
 
       
         
@@ -382,15 +422,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/02/13/The-Lighthouse-Problem/" rel="next" title="The Lighthouse Problem | and why sample mean is not a good estimator">
+                <i class="fa fa-chevron-left"></i> The Lighthouse Problem | and why sample mean is not a good estimator
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/12/LeetCode-Database-Solutions/" rel="prev" title="LeetCode Database Solutions">
-                LeetCode Database Solutions <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -444,8 +484,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/smiling_man.jpg"
@@ -501,6 +550,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Semi-Supervised-Learning-SSL"><span class="nav-number">1.</span> <span class="nav-text">1. Semi-Supervised Learning (SSL)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Nonparametric-Spectral-Series-Estimator-for-Conditional-Density"><span class="nav-number">2.</span> <span class="nav-text">2. Nonparametric Spectral Series Estimator for Conditional Density</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Introduction-to-Series-Estimator"><span class="nav-number">3.</span> <span class="nav-text">3. Introduction to Series Estimator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Orthonormal-Basis-Univariate-Case"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Orthonormal Basis (Univariate Case)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Tensor-Product-Multivariate-Case"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Tensor Product (Multivariate Case)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Spectral-Series-Estimator"><span class="nav-number">4.</span> <span class="nav-text">4. Spectral Series Estimator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Introduction"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Algorithm"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Discuss"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Discuss</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -616,9 +681,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'drinkiit';
-      var disqus_identifier = '2017/02/11/hello-world/';
+      var disqus_identifier = '2017/02/15/an-example-of-semi-supervised-learning/';
 
-      var disqus_title = "Hello World";
+      var disqus_title = "Nonparametric Series Estimator as An Example of Semi-Supervised Learning";
 
 
       function run_disqus_script(disqus_script) {

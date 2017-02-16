@@ -1,0 +1,40 @@
+
+
+# 1. Semi-Supervised Learning (SSL)
+Semi-supervised learning uses both labeled and unlabeled data.[4] That is the learner has both labeled training data $\{(\textbf{x}_i,z_i) : i=1,2,\dots,n \}$ and unlabeled training data $\{\textbf{x}_i : i=n+1,\dots,n+p \}$, where $\textbf{x}_i$ is a multidimensional vector and $z_i$ is a scalar.  The goal is to learn a predictor that predicts $z$ given the new test data $\textbf{x}$. Or in other words, we want to find a mapping $\varphi: \textbf{X} \rightarrow \textbf{z}$ that maps the input space $\textbf{X}$ to the value space $\textbf{z}$. The problem is unlabeled data $\{\textbf{x}_i : i=n+1,\dots,n+p \}$ by itself does not carry any information on the mapping $\varphi: \textbf{X} \rightarrow \textbf{z}$, so how can it help us learn a better predictor? 
+
+<!-- more -->
+
+Self-training, starting in the 1960s, might be the oldest approach to semi-supervised learning. Generative models introduced by Vladimir Vapnik in the 1970s are also very popular approach to semi-supervised learning. But these methods cannot give a very detailed answer to the question above. Here I would like to introduce an example of the semi-supervised learning method, which is a nonparametric series approach proposed by Izbicki and Lee. This series framework can be naturally extended to semi-supervised learning (Zhu and Goldberg 2009). And they also provided the converge rate with and without the unlabeled data.
+
+# 2. Nonparametric Spectral Series Estimator for Conditional Density
+Rafael IZBICKI and Ann B. LEE[2] propose a new nonparametric series estimator to estimate the condition density of $z$ given $\textbf{x}$. Their method follows the following steps: first use the eigenfunctions of an special defined integral operator as the basis of $\textbf{x}$. We can see that these eigenfunctions are orthonormal with respect to the data distribution $P(\textbf{x})$. Then choose a suitable orthonormal basis on the domain of $z$. After that they define a specral series to be the estimate of the conditional density $f(z|\textbf{x})$.
+
+In the first step, the estimator of the spectral basis on the domain of $\textbf{x}$ depends only on $\textbf{x}$ and has nothing to do with $z$. So in this case, ***By including the unlabeled data in the first step, we can better estimate the eigenfunctions which form the basis on the domain of $\textbf{x}$, and hence the conditional density.***
+
+Section 3 describes the triditional series estimators in both univariate and multivariate case. In section 4, we talk about this spectral series method. 
+
+# 3. Introduction to Series Estimator
+
+## 3.1 Orthonormal Basis (Univariate Case) 
+
+## 3.2 Tensor Product (Multivariate Case)
+
+# 4. Spectral Series Estimator
+## 4.1 Introduction
+
+## 4.2 Algorithm
+
+## 4.3 Discuss
+
+
+
+
+
+[1] https://en.wikipedia.org/wiki/Semi-supervised_learning
+
+[2] Izbicki, Rafael, and Ann B. Lee. "Nonparametric Conditional Density Estimation in a High-Dimensional Regression Setting." Journal of Computational and Graphical Statistics,(just accepted) (2015).
+
+[3] Efromovich S. Nonparametric curve estimation: methods, theory, and applications[M]. Springer Science & Business Media, 2008.
+
+[4] Zhu, Xiaojin. "Semi-supervised learning." Encyclopedia of Machine Learning. Springer US, 2011. 892-897.
