@@ -14,8 +14,8 @@ In the first step, the estimator of the spectral basis on the domain of $\textbf
 
 Section 3 describes the triditional series estimators in both univariate and multivariate case. In section 4, we talk about this spectral series method. 
 
-### 3. Introduction to Series Estimator[3 Chapter2, 3 and 6]
-#### 3.1 Orthonormal Basis (Univariate Case) [3 Chapter2]
+### 3. Introduction to Series Estimator[3; Chapter 2, 3 and 6]
+#### 3.1 Orthonormal Basis (Univariate Case) [3; Chapter 2]
 For a given function $f(x)$, we can describe it via a series expansion. Suppose the domain of $f(x)$ is $[0,1]$. Then 
 $$f(x)=\sum_{j=0}^{\infty}\theta_j\varphi_j(x), \ \textrm{where}\ \theta_j = \int_0^1 f(x)\varphi_j(x) dx$$
 Here the functions $\varphi_j(x)$ are called $orthonormal\ functions$, and the $\theta_j$ are called the $Fourier$ coefficients. A system of functions is called $orthonormal$ if the integral $\int_0^1 \varphi_s(x)\varphi_j(x) dx = 0$ for all $s \ne j$ and $\int_0^1 (\varphi_j(x))^2 dx = 1$ for all $j$. 
@@ -27,7 +27,7 @@ $$\varphi_0(x)=1 \ \textrm{and}\ \varphi_j=\sqrt{2} \cos(\pi jx) \ \ \textrm{for
 <img src="seriesApproximation.png" />
 This plot comes from [3, P22]. It shows the approximation of eight corner functions (solid lines) by cosine series: dotted, short-dashed, and long-dashed lines correspond to cutoffs $J = 3$, $J = 5$, and $J = 10$, respectively.
 
-#### 3.2 Tensor Product (Multivariate Case)  [3 Chapter6]
+#### 3.2 Tensor Product (Multivariate Case)  [3; Chapter 6]
 The approximation methods discussed above can be extended to multivariate case using the so-called 'tensor–product basis' which makes the problem of series approximation of multivariate functions similar to the univariate case. In this post, we only focus on the case of bivariate functions. Multivariate functions can be treated with this method similarly. 
 
 Denote by $L(A \times B)$ the space of square integrable bivariate functions $f(x,y)$ such that $\int_A \int_B f^2\big(x, y\big)dxdy < \infty$.  
@@ -46,6 +46,11 @@ And a corresponding partial sum with cutoffs $J_1$ and $J_2$ relative to the var
 $$f_{J_1, J_2}(x,y)=\sum_{j_1=0}^{J_1} \sum_{j_2=0}^{J_2} \theta_{j_1j_2} \varphi_{j_1j_2} (x,y)$$    
 where the Fourier coefficients $\theta_{j_1j_2}$ are defined by the formula:    
 $$\theta_{j_1j_2} = \int_0^1 \int_0^1 f(x,y) \varphi_{j_1j_2} dxdy$$
+#### 3.3 Density Estimation [3; Chapter 3]
+If $f$ is the probability density, the choice of an estimate for Fourier coefficients is straightforward. Indeed, the coefficient $\theta_j$ may be written as 
+$$\theta_j = E[I_{X\in[0,1]} \varphi_j(x)]$$
+And the natural estimate of the theoretical mean is the sample mean,   
+$$\hat{\theta_j}=n^{-1}\sum_{l=1}^nI_{X_l\in[0,1]} \varphi_j(X_l)$$
 
 ### 4. Spectral Series Estimator
 #### 4.1 Introduction
