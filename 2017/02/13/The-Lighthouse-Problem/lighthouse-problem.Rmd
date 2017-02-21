@@ -76,7 +76,7 @@ drawPosterior = function(number, showPoints){
         la = c(la, -sum(log(  beta^2+(x-a)^2)  ))
     }
     la = exp(la + abs(mean(la)))  # normalize
-    la = la/sum(la)
+    la = la/(sum(la)*0.01)
     plot(x=seqA, y=la, type="l", xlab="Lighthouse position a(km)", ylab="p(a|{x},beta)")
     abline(v=mean(x), col="red")
     if(showPoints){ points(x, rep(0, length(x)), col="blue")}
