@@ -52,7 +52,7 @@ $$\theta_j = E[I_{X\in[0,1]} \varphi_j(x)]$$
 And the natural estimate of the theoretical mean is the sample mean,   
 $$\hat{\theta_j}=n^{-1}\sum_{l=1}^nI_{X_l\in[0,1]} \varphi_j(X_l)$$
 
-### 4. Spectral Series Estimator
+### 4. Spectral Series Estimator. (TODO)
 #### 4.1 Introduction
 
 #### 4.2 Algorithm
