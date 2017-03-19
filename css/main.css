@@ -1706,7 +1706,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffff09;
+  background: #bf336c;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2476,9 +2476,9 @@ a.search-result {
   overflow: hidden;
 }
 .header {
+  width: 80%;
   position: relative;
   margin: 0 auto;
-  width: 960px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .header {
@@ -2538,7 +2538,7 @@ a.search-result {
   }
 }
 .container .main-inner {
-  width: 960px;
+  width: 80%;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .container .main-inner {
@@ -2551,10 +2551,10 @@ a.search-result {
   }
 }
 .content-wrap {
+  width: calc(100% - 260px);
   float: right;
   box-sizing: border-box;
   padding: 40px;
-  width: 700px;
   background: #fff;
   min-height: 700px;
   box-shadow: initial;
