@@ -378,76 +378,14 @@
 
       
         
-          
-            <a id="more"></a>
-<h3 id="Example-1-Genetic-Linkage-Model-Rao-1973"><a href="#Example-1-Genetic-Linkage-Model-Rao-1973" class="headerlink" title="Example 1. Genetic Linkage Model (Rao, 1973)"></a>Example 1. Genetic Linkage Model (Rao, 1973)</h3><h5 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h5><p>Suppose the 197 animals ($Y$) are distributed into four categories as follows:<br>$$Y = (y_1, y_2, y_3, y_4) = (125, 18, 20, 34)$$<br>with cell probabilities .<br>$$\big( \frac{1}{2}+\frac{\theta}{4}, \frac{1}{4}(1-\theta), \frac{1}{4}(1-\theta), \frac{\theta}{4} \big)$$<br>The observed data likelihood:<br>$$g(Y\ |\ \theta) \propto \big(\frac{1}{2}+\frac{\theta}{4}\big)^{y_1} \big(\frac{1}{4}(1-\theta)\big)^{y_2+y_3} \big(\frac{\theta}{4}\big)^{y_4}$$</p>
-<p>Augment the observed data by splitting the first cell into two cells with probabilities $\frac{1}{2}$ and $\frac{\theta}{4}$. The augmented data are given by<br>$$(x_1,x_2,x_3,x_4,x_5)$$<br>such that<br>
-$$
-\begin{aligned}
-x_1+x_2 &= y_1=125  \\
-    x_3 &= y_2=18  \\
-    x_4 &= y_3=20  \\
-    x_5 &= y_4=34
-\end{aligned}
-$$
-<br>The “missing data” $Z(=x_2)$ is like a coin toss for which category each observation of $y_1$ gets split into:<br>$$Z \sim Binomial(125, p), \text{where } p=\frac{\theta/4}{1/2 + \theta/4} = \frac{\theta}{2+\theta}$$<br>The augmented data likelihood is now simpler:<br>$$f(X, Z\ |\ \theta) \propto (1-\theta)^{x_3+x_4} \theta^{x_2+x_5}$$<br><strong>E-step. </strong><br>Now we compute the Q function (under a flat prior):<br>
-$$
-\begin{aligned}
-Q(\theta, \theta^{old}) = E_{Z | X, \theta^{old}} \log f(X\ |\ \theta) &= \log \theta \big(E_{Z | Y, \theta^{old}}[x_2] + x_5 \big) + (x_3+x_4)\log (1-\theta)  \\
-&= \log \theta \big(125 \times \frac{\theta^{old}}{2+\theta^{old}} + 34 \big) + (18+20)\log (1-\theta)
-\end{aligned}
-$$
-<br>where the second equality follows from the mean of a binomial distribution.<br><strong>M-step. </strong><br>
-$$
-\begin{aligned}
-\frac{\partial Q(\theta, \theta^{old})}{\partial \theta} \bigg|_{\theta=\theta^{old}} = 0 &\Rightarrow \big(125 \times \frac{\theta^{old}}{2+\theta^{old}} + 34 \big) \times \frac{1}{\theta} - \frac{38}{1-\theta}=0  \\
-&\Rightarrow \theta = \frac{125 \times \frac{\theta^{old}}{2+\theta^{old}} + 34}{125 \times \frac{\theta^{old}}{2+\theta^{old}} + 34 + 38}  \text{ (recursive formula) }
-\end{aligned}
-$$
-</p>
-<h5 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h5><p>Starting at $\theta^0 = 0.5$, the EM algorithm converges to $\theta^*=0.6268$ (the observed posterior mode) after a few iterations. One might ask can we take the derivate of the observed data likelihood (original data likelihood) and set it to zero to get the answer? The answer is yes. The derivate is given as follow:<br>$$\frac{d}{d \theta} \log g(\theta | Y) = \frac{125}{2+\theta} - \frac{38}{1-\theta} + \frac{34}{\theta} = 0$$<br>It is easy to see that $\theta^*$ satisfies this equation (see M-step). Which means, in this case, EM algorithm yields the same result as the MLE.  </p>
-<p>Another question is how to estimate the variance of $\theta^*$? Statisticians are not satisfied with only the estimaed value of $\mu$, they also want to know the variance of the estimate. In general, there are two kind of methods: (1) Parametric Bootstrap (2) Louis’ Method [2].    </p>
-<h3 id="Example-2-Linear-Regression-with-Right-Censored-Data"><a href="#Example-2-Linear-Regression-with-Right-Censored-Data" class="headerlink" title="Example 2. Linear Regression with Right-Censored Data"></a>Example 2. Linear Regression with Right-Censored Data</h3><h3 id="Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution"><a href="#Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution" class="headerlink" title="Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution"></a>Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution</h3><h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This example comes from Gelman’s book[1 Page 322], which shows the application of EM algorithm in Bayesian theory. Bayesian computation revolves around two steps: computation of the posterior distribution, $p(\theta\ |\ y)$, and computation of the posterior predictive distribution, $p(\tilde{y}\ |\ y)$. In problems with many parameters, it is very often we are only interested in a $subset$ of the parameters; we use the notation $\theta = (\gamma, \phi)$ and suppose we are interested in approximating $p(\phi \ |\ y)$. Then the EM algorithm can be viewed as an iterative method for finding the mode of the marginal posterior density, $p(\phi \ |\ y)$.   </p>
-<h5 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem"></a>Problem</h5><p>Suppose we weigh an object on a scale $n$ times, and the weighings, $y_1, \dots, y_n$, are assumed independent with a $N(\mu, \sigma^2)$ distribution, where $\mu$ is the true weight of the object. And we assume a $N(\mu_0, \tau_0^2)$ prior distribution on $\mu$ (with $\mu_0$ and $\tau_0$ known) and a non-informative uniform prior distribution on $\log \sigma$ (that is $p(\sigma) = 1/\sigma$); these form a partially conjugate joint prior distribution.    </p>
-<h5 id="Discussion-1"><a href="#Discussion-1" class="headerlink" title="Discussion"></a>Discussion</h5><p>Because the model is not fully conjugate, there is no standard form for the joint posterior distribution of $(\mu, \sigma)$ and no closed-form expression for the marginal posterior density $\mu$. In this problem, since there are only two parameters we can easily do a grid search over $\mu$ and $\sigma$ and then create a simple contour plot. But if we are only interested in $\mu$, we can, however, think of $\mu$ as the parameter in our problem and $\sigma$ as missing data. EM can therefore be used to find the marginal posterior mode of $\mu$, averaging over $\sigma$; that is, $(\mu, \sigma)$ corresponds to $(\phi, \gamma)$ in the general notation.    </p>
-<h5 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h5><p>Model:<br>
-$$
-\begin{aligned}
-& y\ |\ \mu, \sigma^2 \sim N(\mu, \sigma^2)   \\
-& \mu\ |\ \mu_0, \tau_0^2 \sim N(\mu_0, \tau_0^2)   \\
-& \log \sigma \propto 1
-\end{aligned}
-$$
-</p>
-<p>Write down the joint distribution:<br>
-$$
-\begin{aligned}
-p(y, \mu, \sigma) &= p(y\ |\ \mu, \sigma) \times p(\mu\ |\ \mu_0, \tau_0) \times p(\sigma)   \\
-                  &= \prod_{i=1}^n  \frac{1}{\sqrt{2\pi} \sigma} exp\big({-\frac{1}{2\sigma^2}(y_i-\mu)^2}\big) \times \frac{1}{\sqrt{2\pi} \tau_0} exp\big({-\frac{1}{2\tau_0^2}(\mu-\mu_0)^2}\big) \times \frac{1}{\sigma}
-\end{aligned}
-$$
-</p>
-<p>Posterior distribution (ignoring terms that do not depend on $\mu$ or $\sigma^2$):<br>$$p(\mu, \sigma \ |\ y) \propto \big(\frac{1}{\sigma}\big)^{(n+1)} \prod_{i=1}^n exp\big({-\frac{1}{2\sigma^2}(y_i-\mu)^2}\big) \times exp\big({-\frac{1}{2\tau_0^2}(\mu-\mu_0)^2}\big)$$</p>
-<p>Joint log posterior density:<br>
-$$\log p(\mu, \sigma \ |\ y) = -\frac{1}{2\tau_0^2}(\mu-\mu_0)^2 - (n+1)\log \sigma - \frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\mu)^2 + constant$$
-</p>
-<p><strong>E-step.</strong> For the E-step of the EM algorithm, we must determine the expectation of the joint log posterior density, averaging over $\sigma$ and conditional on the current guess $\mu^{old}$ and y:  </p>
-
-$$E_{\sigma\ |\ \mu_{old},y} \log p(\mu, \sigma\ |\ y) = -\frac{1}{2\tau_0^2}(\mu-\mu_0)^2 - (n+1) E_{\sigma\ |\ \mu_{old},y} [\log \sigma] - \frac{1}{2}E_{\sigma\ |\ \mu_{old},y} \big[ \frac{1}{\sigma^2} \big] \sum_{i=1}^n (y_i-\mu)^2 + constant$$   
-
-<p>Actually, we need evaluate only the second expectation $E_{\sigma\ |\ \mu_{old},y} [ \frac{1}{\sigma^2} ]$, because the first expectation does not involve $\mu$ and thus will not affect the M-step. The expectation can be evaluated by noting that, given $\mu$, the posterior distribution of $\sigma^2$ is scaled inverse-chi-squared:  </p>
-
-$$\sigma^2\ | \ \mu, y \sim Inv-\chi^2\big(n, \frac{1}{n}\sum_{i=1}^n(y_i-\mu)^2\big)$$
-
-<p>Then the conditional posterior distribution of $\frac{1}{\sigma^2}$ is a scaled $\chi^2$, and<br>
-$$E_{\sigma\ |\ \mu_{old},y} \big[ \frac{1}{\sigma^2} \ \big|\ \mu_{old}, y \big] = \bigg( \frac{1}{n} \sum_{i=1}^n(y_i-\mu^{old})^2 \bigg)^{-1}$$
-<br>We can then re-express the expectation as:<br>
-$$E_{\sigma\ |\ \mu_{old},y} \log p(\mu, \sigma\ |\ y) = -\frac{1}{2\tau_0^2}(\mu-\mu_0)^2 - \frac{1}{2}\bigg( \frac{1}{n} \sum_{i=1}^n(y_i-\mu^{old})^2 \bigg)^{-1} \sum_{i=1}^n (y_i-\mu)^2 + constant$$  
-<br><strong>M-step.</strong>  For the M-step, we must find the $\mu$ that maximizes the above expression. The task is straightforward, simply take the derivate and set it to 0, then we have:<br>
-$$\mu^{new} = \frac{\frac{1}{\tau_0^2}\mu_0 + \frac{n}{\frac{1}{n}\sum_{i=1}^n(y_i-\mu^{old})^2}\bar{y} }{\frac{1}{\tau_0^2} + \frac{n}{\frac{1}{n}\sum_{i=1}^n(y_i-\mu^{old})^2} }$$   
-<br>If we iterate this computation, $\mu$ converges to the marginal mode of $p(\mu\ |\ y)$.</p>
-
-          
+          <p>The EM algorithm formalizes a fairly old approach to handling missing data: first replace missing data by estimated values, then estimates the model parameters, and perhaps, repeat these two steps several times.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/19/Three-Examples-of-EM-Algorithm/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
