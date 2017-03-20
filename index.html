@@ -267,6 +267,178 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/19/Three-Examples-of-EM-Algorithm/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yida Yin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/smiling_man.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Yida's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Yida's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/19/Three-Examples-of-EM-Algorithm/" itemprop="url">
+                  Three Examples of EM Algorithm (TODO)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-19T19:41:34-05:00">
+                2017-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Statistics/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/19/Three-Examples-of-EM-Algorithm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/19/Three-Examples-of-EM-Algorithm/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution"><a href="#Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution" class="headerlink" title="Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution"></a>Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution</h3><h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This example comes from Gelman’s book[1 Page 322], which shows the application of EM algorithm in Bayesian theory. Bayesian computation revolves around two steps: computation of the posterior distribution, $p(\theta\ |\ y)$, and computation of the posterior predictive distribution, $p(\tilde{y}\ |\ y)$. In problems with many parameters, it is very often we are only interested in a $subset$ of the parameters; we use the notation $\theta = (\gamma, \phi)$ and suppose we are interested in approximating $p(\phi \ |\ y)$. Then the EM algorithm can be viewed as an iterative method for finding the mode of the marginal posterior density, $p(\phi \ |\ y)$.   </p>
+<h5 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h5><p>Suppose we weigh an object on a scale $n$ times, and the weighings, $y_1, \dots, y_n$, are assumed independent with a $N(\mu, \sigma^2)$ distribution, where $\mu$ is the true weight of the object. And we assume a $N(\mu_0, \tau_0^2)$ prior distribution on $\mu$ (with $\mu_0$ and $\tau_0$ known) and a non-informative uniform prior distribution on $\log \sigma$ (that is $p(\sigma) = 1/\sigma$); these form a partially conjugate joint prior distribution.    </p>
+<h5 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h5><p>Because the model is not fully conjugate, there is no standard form for the joint posterior distribution of $(\mu, \sigma)$ and no closed-form expression for the marginal posterior density $\mu$. In this problem, since there are only two parameters we can easily do a grid search over $\mu$ and $\sigma$ and then create a simple contour plot. But if we are only interested in $\mu$, we can, however, think of $\mu$ as the parameter in our problem and $\sigma$ as missing data. EM can therefore be used to find the marginal posterior mode of $\mu$, averaging over $\sigma$; that is, $(\mu, \sigma)$ corresponds to $(\phi, \gamma)$ in the general notation.    </p>
+<h5 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h5><p>Model:<br>
+$$
+\begin{aligned}
+& y\ |\ \mu, \sigma^2 \sim N(\mu, \sigma^2)   \\
+& \mu\ |\ \mu_0, \tau_0^2 \sim N(\mu_0, \tau_0^2)   \\
+& \log \sigma \propto 1
+\end{aligned}
+$$
+</p>
+<p>Write down the joint distribution:<br>
+$$
+\begin{aligned}
+p(y, \mu, \sigma) &= p(y\ |\ \mu, \sigma) \times p(\mu\ |\ \mu_0, \tau_0) \times p(\sigma)   \\
+                  &= \prod_{i=1}^n  \frac{1}{\sqrt{2\pi} \sigma} exp\big({-\frac{1}{2\sigma^2}(y_i-\mu)^2}\big) \times \frac{1}{\sqrt{2\pi} \tau_0} exp\big({-\frac{1}{2\tau_0^2}(\mu-\mu_0)^2}\big) \times \frac{1}{\sigma}
+\end{aligned}
+$$
+</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/isotonic-regression/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1065,7 +1237,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
