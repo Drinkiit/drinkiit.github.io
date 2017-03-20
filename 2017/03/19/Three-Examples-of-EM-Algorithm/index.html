@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distributionIntroductionThis example comes from Gelman’s book[1 Page 322], which shows the application of EM">
+<meta name="description" content="Example 1. Genetic Linkage Model (Rao, 1973)Example 2. Linear Regression with Right-Censored DataExample 3. Normal distribution with unknown mean and variance and partially conjugate prior distributio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Three Examples of EM Algorithm (TODO)">
 <meta property="og:url" content="http://yoursite.com/2017/03/19/Three-Examples-of-EM-Algorithm/index.html">
 <meta property="og:site_name" content="Yida's Blog">
-<meta property="og:description" content="Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distributionIntroductionThis example comes from Gelman’s book[1 Page 322], which shows the application of EM">
-<meta property="og:updated_time" content="2017-03-20T00:52:52.000Z">
+<meta property="og:description" content="Example 1. Genetic Linkage Model (Rao, 1973)Example 2. Linear Regression with Right-Censored DataExample 3. Normal distribution with unknown mean and variance and partially conjugate prior distributio">
+<meta property="og:updated_time" content="2017-03-20T01:20:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Three Examples of EM Algorithm (TODO)">
-<meta name="twitter:description" content="Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distributionIntroductionThis example comes from Gelman’s book[1 Page 322], which shows the application of EM">
+<meta name="twitter:description" content="Example 1. Genetic Linkage Model (Rao, 1973)Example 2. Linear Regression with Right-Censored DataExample 3. Normal distribution with unknown mean and variance and partially conjugate prior distributio">
 
 
 
@@ -373,7 +373,8 @@
       
 
       
-        <h3 id="Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution"><a href="#Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution" class="headerlink" title="Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution"></a>Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution</h3><h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This example comes from Gelman’s book[1 Page 322], which shows the application of EM algorithm in Bayesian theory. Bayesian computation revolves around two steps: computation of the posterior distribution, $p(\theta\ |\ y)$, and computation of the posterior predictive distribution, $p(\tilde{y}\ |\ y)$. In problems with many parameters, it is very often we are only interested in a $subset$ of the parameters; we use the notation $\theta = (\gamma, \phi)$ and suppose we are interested in approximating $p(\phi \ |\ y)$. Then the EM algorithm can be viewed as an iterative method for finding the mode of the marginal posterior density, $p(\phi \ |\ y)$.   </p>
+        <h3 id="Example-1-Genetic-Linkage-Model-Rao-1973"><a href="#Example-1-Genetic-Linkage-Model-Rao-1973" class="headerlink" title="Example 1. Genetic Linkage Model (Rao, 1973)"></a>Example 1. Genetic Linkage Model (Rao, 1973)</h3><h3 id="Example-2-Linear-Regression-with-Right-Censored-Data"><a href="#Example-2-Linear-Regression-with-Right-Censored-Data" class="headerlink" title="Example 2. Linear Regression with Right-Censored Data"></a>Example 2. Linear Regression with Right-Censored Data</h3><h3 id="Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution"><a href="#Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution" class="headerlink" title="Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution"></a>Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution</h3><a id="more"></a>
+<h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This example comes from Gelman’s book[1 Page 322], which shows the application of EM algorithm in Bayesian theory. Bayesian computation revolves around two steps: computation of the posterior distribution, $p(\theta\ |\ y)$, and computation of the posterior predictive distribution, $p(\tilde{y}\ |\ y)$. In problems with many parameters, it is very often we are only interested in a $subset$ of the parameters; we use the notation $\theta = (\gamma, \phi)$ and suppose we are interested in approximating $p(\phi \ |\ y)$. Then the EM algorithm can be viewed as an iterative method for finding the mode of the marginal posterior density, $p(\phi \ |\ y)$.   </p>
 <h5 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h5><p>Suppose we weigh an object on a scale $n$ times, and the weighings, $y_1, \dots, y_n$, are assumed independent with a $N(\mu, \sigma^2)$ distribution, where $\mu$ is the true weight of the object. And we assume a $N(\mu_0, \tau_0^2)$ prior distribution on $\mu$ (with $\mu_0$ and $\tau_0$ known) and a non-informative uniform prior distribution on $\log \sigma$ (that is $p(\sigma) = 1/\sigma$); these form a partially conjugate joint prior distribution.    </p>
 <h5 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h5><p>Because the model is not fully conjugate, there is no standard form for the joint posterior distribution of $(\mu, \sigma)$ and no closed-form expression for the marginal posterior density $\mu$. In this problem, since there are only two parameters we can easily do a grid search over $\mu$ and $\sigma$ and then create a simple contour plot. But if we are only interested in $\mu$, we can, however, think of $\mu$ as the parameter in our problem and $\sigma$ as missing data. EM can therefore be used to find the marginal posterior mode of $\mu$, averaging over $\sigma$; that is, $(\mu, \sigma)$ corresponds to $(\phi, \gamma)$ in the general notation.    </p>
 <h5 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h5><p>Model:<br>
@@ -393,6 +394,11 @@ p(y, \mu, \sigma) &= p(y\ |\ \mu, \sigma) \times p(\mu\ |\ \mu_0, \tau_0) \times
 \end{aligned}
 $$
 </p>
+<p>Posterior distribution (ignoring terms that do not depend on \mu or \sigma^2):<br>$$p(\mu, \sigma \ |\ y) \propto \big(\frac{1}{\sigma}\big)^{(n+1)} \prod_{i=1}^n exp\big({-\frac{1}{2\sigma^2}(y_i-\mu)^2}\big) \times exp\big({-\frac{1}{2\tau_0^2}(\mu-\mu_0)^2}\big)$$</p>
+<p>Joint log posterior density:<br>
+$$\log p(\mu, \sigma \ |\ y) = -\frac{1}{2\tau_0^2}(\mu-\mu_0)^2 - (n+1)\log \sigma - \frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\mu)^2 + constant$$
+</p>
+<p><em>E-step</em>. </p>
 
       
     </div>
@@ -572,7 +578,7 @@ $$
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution"><span class="nav-number">1.</span> <span class="nav-text">Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Introduction"><span class="nav-number">1.0.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Problem"><span class="nav-number">1.0.2.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Discussion"><span class="nav-number">1.0.3.</span> <span class="nav-text">Discussion</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution"><span class="nav-number">1.0.4.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1-Genetic-Linkage-Model-Rao-1973"><span class="nav-number">1.</span> <span class="nav-text">Example 1. Genetic Linkage Model (Rao, 1973)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-2-Linear-Regression-with-Right-Censored-Data"><span class="nav-number">2.</span> <span class="nav-text">Example 2. Linear Regression with Right-Censored Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution"><span class="nav-number">3.</span> <span class="nav-text">Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Introduction"><span class="nav-number">3.0.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Problem"><span class="nav-number">3.0.2.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Discussion"><span class="nav-number">3.0.3.</span> <span class="nav-text">Discussion</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Solution"><span class="nav-number">3.0.4.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
