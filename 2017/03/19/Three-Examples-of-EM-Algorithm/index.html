@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/19/Three-Examples-of-EM-Algorithm/index.html">
 <meta property="og:site_name" content="Yida's Blog">
 <meta property="og:description" content="The EM algorithm formalizes a fairly old approach to handling missing data: first replace missing data by estimated values, then estimates the model parameters, and perhaps, repeat these two steps sev">
-<meta property="og:updated_time" content="2017-03-20T18:08:08.000Z">
+<meta property="og:updated_time" content="2017-03-21T14:46:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Three Examples of EM Algorithm (TODO)">
 <meta name="twitter:description" content="The EM algorithm formalizes a fairly old approach to handling missing data: first replace missing data by estimated values, then estimates the model parameters, and perhaps, repeat these two steps sev">
@@ -401,7 +401,13 @@ $$
 $$
 </p>
 <h4 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h4><p>Starting at $\theta^0 = 0.5$, the EM algorithm converges to $\theta^*=0.6268$ (the observed posterior mode) after a few iterations. One might ask can we take the derivate of the observed data likelihood (original data likelihood) and set it to zero to get the answer? The answer is yes. The derivate is given as follow:<br>$$\frac{d}{d \theta} \log g(\theta | Y) = \frac{125}{2+\theta} - \frac{38}{1-\theta} + \frac{34}{\theta} = 0$$<br>It is easy to see that $\theta^*$ satisfies this equation (see M-step). Which means, in this case, EM algorithm yields the same result as the MLE.  </p>
-<p>Another question is how to estimate the variance of $\theta^*$? Statisticians are not satisfied with only the estimaed value of $\mu$, they also want to know the variance of the estimate. In general, there are two kind of methods: (1) Parametric Bootstrap (2) Louis’ Method [2].  </p>
+<p>Another question is how to estimate the variance of $\theta^*$? Statisticians are not satisfied with only the estimaed value of $\mu$, they also want to know the variance of the estimate. In general, there are two kind of methods: (1) Parametric Bootstrap (2) Louis’ Method [2].<br>(1) Parametric Bootstrap:  </p>
+<ul>
+<li>Generate random Y based on $\mu^*$   </li>
+<li>Run EM algorithm on each bootstrap sample   </li>
+<li>Calculate the bootstrap variance of the estimated $\mu$    </li>
+</ul>
+<p>(2) Louis’ Method [2] TODO    </p>
 <h3 id="Example-2-Linear-Regression-with-Right-Censored-Data"><a href="#Example-2-Linear-Regression-with-Right-Censored-Data" class="headerlink" title="Example 2. Linear Regression with Right-Censored Data"></a>Example 2. Linear Regression with Right-Censored Data</h3><p>We consider the motorette data found in Schmee and Hahn (1979). </p>
 <h3 id="Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution"><a href="#Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution" class="headerlink" title="Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution"></a>Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution</h3><h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>This example comes from Gelman’s book[1 Page 322], which shows the application of EM algorithm in Bayesian theory. Bayesian computation revolves around two steps: computation of the posterior distribution, $p(\theta\ |\ y)$, and computation of the posterior predictive distribution, $p(\tilde{y}\ |\ y)$. In problems with many parameters, it is very often we are only interested in a $subset$ of the parameters; we use the notation $\theta = (\gamma, \phi)$ and suppose we are interested in approximating $p(\phi \ |\ y)$. Then the EM algorithm can be viewed as an iterative method for finding the mode of the marginal posterior density, $p(\phi \ |\ y)$.   </p>
 <h4 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem"></a>Problem</h4><p>Suppose we weigh an object on a scale $n$ times, and the weighings, $y_1, \dots, y_n$, are assumed independent with a $N(\mu, \sigma^2)$ distribution, where $\mu$ is the true weight of the object. And we assume a $N(\mu_0, \tau_0^2)$ prior distribution on $\mu$ (with $\mu_0$ and $\tau_0$ known) and a non-informative uniform prior distribution on $\log \sigma$ (that is $p(\sigma) = 1/\sigma$); these form a partially conjugate joint prior distribution.    </p>
