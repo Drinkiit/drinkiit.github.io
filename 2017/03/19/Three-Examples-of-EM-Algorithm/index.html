@@ -89,14 +89,16 @@
 
 <meta name="description" content="The EM algorithm formalizes a fairly old approach to handling missing data: first replace missing data by estimated values, then estimates the model parameters, and perhaps, repeat these two steps sev">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Three Examples of EM Algorithm (TODO)">
+<meta property="og:title" content="Three Examples of EM Algorithm">
 <meta property="og:url" content="http://yoursite.com/2017/03/19/Three-Examples-of-EM-Algorithm/index.html">
 <meta property="og:site_name" content="Yida's Blog">
 <meta property="og:description" content="The EM algorithm formalizes a fairly old approach to handling missing data: first replace missing data by estimated values, then estimates the model parameters, and perhaps, repeat these two steps sev">
-<meta property="og:updated_time" content="2017-03-21T14:46:57.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/03/19/Three-Examples-of-EM-Algorithm/motorette.png">
+<meta property="og:updated_time" content="2017-03-23T21:37:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Three Examples of EM Algorithm (TODO)">
+<meta name="twitter:title" content="Three Examples of EM Algorithm">
 <meta name="twitter:description" content="The EM algorithm formalizes a fairly old approach to handling missing data: first replace missing data by estimated values, then estimates the model parameters, and perhaps, repeat these two steps sev">
+<meta name="twitter:image" content="http://yoursite.com/2017/03/19/Three-Examples-of-EM-Algorithm/motorette.png">
 
 
 
@@ -130,7 +132,7 @@
 
 
 
-  <title> Three Examples of EM Algorithm (TODO) | Yida's Blog </title>
+  <title> Three Examples of EM Algorithm | Yida's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -290,7 +292,7 @@
             
             
               
-                Three Examples of EM Algorithm (TODO)
+                Three Examples of EM Algorithm
               
             
           </h1>
@@ -408,7 +410,24 @@ $$
 <li>Calculate the bootstrap variance of the estimated $\mu$    </li>
 </ul>
 <p>(2) Louis’ Method [2] TODO    </p>
-<h3 id="Example-2-Linear-Regression-with-Right-Censored-Data"><a href="#Example-2-Linear-Regression-with-Right-Censored-Data" class="headerlink" title="Example 2. Linear Regression with Right-Censored Data"></a>Example 2. Linear Regression with Right-Censored Data</h3><p>We consider the motorette data found in Schmee and Hahn (1979). </p>
+<h3 id="Example-2-Linear-Regression-with-Right-Censored-Data"><a href="#Example-2-Linear-Regression-with-Right-Censored-Data" class="headerlink" title="Example 2. Linear Regression with Right-Censored Data"></a>Example 2. Linear Regression with Right-Censored Data</h3><p>We consider the motorette data found in Schmee and Hahn (1979). Ten motorettes were tested at each of the four temperatures: 150C, 170C, 190C and 220C. The time to failure in hours is given in Table below.   </p>
+<p><img src="/2017/03/19/Three-Examples-of-EM-Algorithm/motorette.png" alt="motorette_data" style="width: 60%;"></p>
+<p>A star indicates that a motorette was taken off the study without failing at the event time indicated. For these data, we will fit the model:<br>$$t_i = \beta_0 + \beta_1 \nu_i + \sigma \epsilon_i$$   <br>where $\epsilon_i \sim N(0,1)$, $\nu_i=1000/(\text{temperature} + 273.2)$ and $t_i=\log_{10}$ ($i$th failure time).<br>Reorder the data so that the first $k$ observations are uncensored (i.e. a failure is observed at $t_i$) and the remaining $n-k$ are censored ($c_i$ denotes a censored event time). The log-augmented posterior (under a flat prior) is given (up to a constant by):<br>$$-n\log\sigma - \sum_{i=1}^k(t_i-\beta_0-\beta_1\nu_i)^2/2\sigma^2 - \sum_{i=k+1}^{n}(Z_i-\beta_0-\beta_1\nu_i)^2/2\sigma^2$$   <br>where $Z_j$ is the (unobserved) failure time for case $j$. The conditional predictive distribution $p(Z_i\ |\ \beta_0, \beta_1, \sigma, c_i)$ is the conditional normal distribution, conditional on the fact that the unobserved failure time $Z_j$ is greater than $c_j$.<br><strong>E-step .</strong> Compute:<br>
+$$
+\begin{aligned}
+-n\log\sigma &- \frac{1}{2\sigma^2}\sum_{i=1}^{k}(t_i-\beta_0-\beta_1\nu_i)^2 \\
+&- \frac{1}{2\sigma^2}\sum_{i=k+1}^{n}\bigg[  E[Z_i^2\ |\ \beta_0^{old}, \beta_1^{old}, \sigma^{old}, Z_i > c_i] - 2(\beta_0+\beta_1)E[Z_i\ |\ \beta_0^{old}, \beta_1^{old}, \sigma^{old}, Z_i > c_i]+(\beta_0+\beta_1\nu_i)^2 \bigg]
+\end{aligned}
+$$
+<br>Note that:<br>$$ E[Z_i^2\ |\ \beta_0^{old}, \beta_1^{old}, \sigma^{old}, Z_i > c_i] = \mu_i^2 + \sigma^2 + \sigma (c_i+\mu_i) H\bigg(\frac{c_i-\mu_i}{\sigma} \bigg)$$<br>and<br>$$ E[Z_i\ |\ \beta_0^{old}, \beta_1^{old}, \sigma^{old}, Z_i > c_i] = \mu_i + \sigma H\bigg(\frac{c_i-\mu_i}{\sigma} \bigg) $$  <br>where $\mu_i = \beta_0+\beta_1\nu_i$, $H(x)=\phi(x)/(1-\Phi(x))$, and $\phi(x)$ and $\Phi(x)$ are the density and cdf of the standard normal distribution.<br><strong>M-step .</strong><br>
+$$
+\begin{aligned}
+\frac{\partial Q}{\partial\beta_0} &= 0 \rightarrow \sum_{i=1}{m}(t_i-\beta_0-\beta_1\nu_i) + \sum_{i=k+1}^{n}\big[ E(Z_i)-\beta_0-\beta_1\nu_i \big] = 0  \\
+\frac{\partial Q}{\partial\beta_1} &= 0 \rightarrow \sum_{i=1}{m}\nu_i(t_i-\beta_0-\beta_1\nu_i) + \sum_{i=k+1}^{n}\nu_i\big[ E(Z_i)-\beta_0-\beta_1\nu_i \big] = 0  \\
+\frac{\partial Q}{\partial\sigma^2} &= 0 \rightarrow \frac{\sum_{i=1}^k(t_i-\beta_0-\beta_1\nu_i)^2}{\sigma^4} + \frac{\sum_{i=k+1}^n \big[ E(Z_i)^2-2(\beta_0+\beta_1\nu_i)E(Z_i)+(\beta_0+\beta_1\nu_i)^2 \big]}{\sigma^4} - \frac{n}{\sigma^4} = 0
+\end{aligned}
+$$
+<br>To obtain $\beta^{new}$, replace $c_j$ by $E[Z_j\ |\ \beta_0^{old}, \beta_1^{old},\sigma^{old}, Z_j>c_j]$ and apply least squares. To obtain $\sigma_{new}^2$, compute:<br>$$\sigma_{new}^2 = \frac{\sum_{j=1}^k(t_j-\mu_j^{old})^2}{n} + \sigma_{old}^2 \frac{\sum_{j=k+1}^n \big[ 1+\big(\frac{c_j-\mu_j^{old}}{\sigma_{old}}H\big( \frac{c_j-\mu_j^{old}}{\sigma_{old}} \big) \big]}{n}$$  <br>where $\mu_j^{old} = \beta_0^{old}+\beta_1^{old}\nu_j$</p>
 <h3 id="Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution"><a href="#Example-3-Normal-distribution-with-unknown-mean-and-variance-and-partially-conjugate-prior-distribution" class="headerlink" title="Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution"></a>Example 3. Normal distribution with unknown mean and variance and partially conjugate prior distribution</h3><h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>This example comes from Gelman’s book[1 Page 322], which shows the application of EM algorithm in Bayesian theory. Bayesian computation revolves around two steps: computation of the posterior distribution, $p(\theta\ |\ y)$, and computation of the posterior predictive distribution, $p(\tilde{y}\ |\ y)$. In problems with many parameters, it is very often we are only interested in a $subset$ of the parameters; we use the notation $\theta = (\gamma, \phi)$ and suppose we are interested in approximating $p(\phi \ |\ y)$. Then the EM algorithm can be viewed as an iterative method for finding the mode of the marginal posterior density, $p(\phi \ |\ y)$.   </p>
 <h4 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem"></a>Problem</h4><p>Suppose we weigh an object on a scale $n$ times, and the weighings, $y_1, \dots, y_n$, are assumed independent with a $N(\mu, \sigma^2)$ distribution, where $\mu$ is the true weight of the object. And we assume a $N(\mu_0, \tau_0^2)$ prior distribution on $\mu$ (with $\mu_0$ and $\tau_0$ known) and a non-informative uniform prior distribution on $\log \sigma$ (that is $p(\sigma) = 1/\sigma$); these form a partially conjugate joint prior distribution.    </p>
 <h4 id="Discussion-1"><a href="#Discussion-1" class="headerlink" title="Discussion"></a>Discussion</h4><p>Because the model is not fully conjugate, there is no standard form for the joint posterior distribution of $(\mu, \sigma)$ and no closed-form expression for the marginal posterior density $\mu$. In this problem, since there are only two parameters we can easily do a grid search over $\mu$ and $\sigma$ and then create a simple contour plot. But if we are only interested in $\mu$, we can, however, think of $\mu$ as the parameter in our problem and $\sigma$ as missing data. EM can therefore be used to find the marginal posterior mode of $\mu$, averaging over $\sigma$; that is, $(\mu, \sigma)$ corresponds to $(\phi, \gamma)$ in the general notation.    </p>
@@ -750,7 +769,7 @@ $$\mu^{new} = \frac{\frac{1}{\tau_0^2}\mu_0 + \frac{n}{\frac{1}{n}\sum_{i=1}^n(y
       var disqus_shortname = 'drinkiit';
       var disqus_identifier = '2017/03/19/Three-Examples-of-EM-Algorithm/';
 
-      var disqus_title = "Three Examples of EM Algorithm (TODO)";
+      var disqus_title = "Three Examples of EM Algorithm";
 
 
       function run_disqus_script(disqus_script) {
