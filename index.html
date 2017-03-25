@@ -267,6 +267,163 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/What-I-Learned-from-Peter-Norvig/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yida Yin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/smiling_man.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Yida's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Yida's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/24/What-I-Learned-from-Peter-Norvig/" itemprop="url">
+                  What I Learned from Peter Norvig
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-24T21:04:17-05:00">
+                2017-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Science/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Science</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/24/What-I-Learned-from-Peter-Norvig/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/24/What-I-Learned-from-Peter-Norvig/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>This title is truly nothing more than a click bait. The thing is, I’ve just finished the course “Design of Computer Programs” by Peter Norvig on Udacity. This course is probably the best online course I have ever taken. I think even experienced software developer may be able to learn something from this course. Especially when you compare your solutions to that given by Peter and you will find that Peter’s solutions are far more elegant and succinct. But, besides the technical things, I would like to share two quotes by Peter in Lesson 6. </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/24/What-I-Learned-from-Peter-Norvig/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/19/Three-Examples-of-EM-Algorithm/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -849,7 +1006,8 @@
 
       
         
-          <p>This example comes from ‘Data analysis: a Bayesian tutorial’[1 P29]. It was originally studied by Gull (1988) who found this problem on a problems sheet for first-year undergraduates at Cambridge:<br><cite><br>‘A lighthouse is somewhere off a piece of straight coastline at a position $\alpha$ along the shore and a distance $\beta$ out at sea. It emits a series of short highly collimated flashes at random intervals and hence at random azimuths. These pulses are intercepted on the coast by photo-detectors that record only the fact that a flash has occurred, but not the angle from which it came. $N$ flashes have so far been recorded at positions $x_k$. Where is the lighthouse?’<br></cite></p>
+          <p>This example comes from ‘Data analysis: a Bayesian tutorial’[1 P29]. It was originally studied by Gull (1988) who found this problem on a problems sheet for first-year undergraduates at Cambridge:<br><blockquote><p>A lighthouse is somewhere off a piece of straight coastline at a position $\alpha$ along the shore and a distance $\beta$ out at sea. It emits a series of short highly collimated flashes at random intervals and hence at random azimuths. These pulses are intercepted on the coast by photo-detectors that record only the fact that a flash has occurred, but not the angle from which it came. $N$ flashes have so far been recorded at positions $x_k$. Where is the lighthouse?</p>
+</blockquote></p>
 <p><img src="/2017/02/13/The-Lighthouse-Problem/illustration_lighthouse.png"></p>
 <p>The geometry of this problem is illustrated above. Give the nature of the lighthouse emissions, it’s reasonable to assign a uniform pdf for the azimuth of the $k$th datum $\theta_k$:</p>
 <p>$$p(\theta_k | \alpha, \beta) = \frac{1}{\pi}$$</p>
@@ -1222,7 +1380,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
